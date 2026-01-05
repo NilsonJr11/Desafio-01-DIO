@@ -155,9 +155,11 @@ def main():
             exibir_extrato(saldo, extrato=extrato)
 
         elif opcao == "n":
-            novo_usuario = coletar_nova_conta(lista_usuarios)
-            lista_usuarios.append(novo_usuario)
-            print(f"\n=== Nova conta #{novo_usuario['precedencia']} cadastrada com sucesso! ===")
+            novo_usuario = coletar_nova_conta(lista_usuarios, AGENCIA)
+            # Se um novo usuário foi criado, adiciona à lista; se retornou None, a conta foi adicionada a um usuário existente
+            if novo_usuario:
+                lista_usuarios.append(novo_usuario)
+                print(f"\n=== Novo usuário #{novo_usuario['precedencia']} cadastrado com sucesso! ===")
 
         elif opcao == "u":
             listar_usuarios(lista_usuarios)
